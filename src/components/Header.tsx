@@ -45,7 +45,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => scrollToSection('home')}>
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-gray-100">
+            <div className="w-12 h-12 bg-[#0033A0] rounded-full flex items-center justify-center shadow-md">
               <img src="/image.png" alt="Dunaway Heating & Cooling" className="w-10 h-10 object-contain" />
             </div>
             <div className="flex flex-col">
