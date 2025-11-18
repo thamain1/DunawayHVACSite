@@ -9,6 +9,9 @@ import Testimonials from './components/Testimonials';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import SmsTermsModal from './components/SmsTermsModal';
+import PrivacyPolicyModal from './components/PrivacyPolicyModal';
+import TermsModal from './components/TermsModal';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
       <About />
       <Contact />
       <Footer />
+      <SmsTermsModal />
+      <PrivacyPolicyModal />
+      <TermsModal />
     </div>
   );
 }

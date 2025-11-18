@@ -9,7 +9,8 @@ export default function Contact() {
     address: '',
     contactMethod: 'phone',
     serviceType: 'heating',
-    message: ''
+    message: '',
+    smsConsent: false
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,16 +27,27 @@ export default function Contact() {
         address: '',
         contactMethod: 'phone',
         serviceType: 'heating',
-        message: ''
+        message: '',
+        smsConsent: false
       });
     }, 3000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const target = e.target;
+    const value = target.type === 'checkbox' ? (target as HTMLInputElement).checked : target.value;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [target.name]: value
     });
+  };
+
+  const openSmsTerms = () => {
+    window.dispatchEvent(new CustomEvent('openSmsTerms'));
+  };
+
+  const openPrivacyPolicy = () => {
+    window.dispatchEvent(new CustomEvent('openPrivacyPolicy'));
   };
 
   return (
@@ -157,38 +169,56 @@ export default function Contact() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-semibold text-navy mb-2">
-                          Phone Number *
-                        </label>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-semibold text-navy mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red focus:border-transparent transition-all duration-200"
+                        placeholder="(601) 555-0123"
+                      />
+                      <div className="mt-4 flex items-start space-x-3">
                         <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          required
-                          value={formData.phone}
+                          type="checkbox"
+                          id="smsConsent"
+                          name="smsConsent"
+                          checked={formData.smsConsent}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red focus:border-transparent transition-all duration-200"
-                          placeholder="(601) 555-0123"
+                          className="mt-1 w-4 h-4 text-red border-gray-300 rounded focus:ring-red focus:ring-2 cursor-pointer flex-shrink-0"
                         />
+                        <label htmlFor="smsConsent" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
+                          I agree to receive SMS/text messages from Dunaway Heating & Cooling at the number provided above, including appointment reminders, service updates, and occasional promotions. Message and data rates may apply. Message frequency varies. Consent is not a condition of purchase. Reply STOP to opt out or HELP for help. See our{' '}
+                          <button type="button" onClick={openSmsTerms} className="text-red underline hover:text-red/80">
+                            SMS Terms
+                          </button>{' '}
+                          and{' '}
+                          <button type="button" onClick={openPrivacyPolicy} className="text-red underline hover:text-red/80">
+                            Privacy Policy
+                          </button>.
+                        </label>
                       </div>
+                    </div>
 
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-semibold text-navy mb-2">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red focus:border-transparent transition-all duration-200"
-                          placeholder="john@example.com"
-                        />
-                      </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-navy mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red focus:border-transparent transition-all duration-200"
+                        placeholder="john@example.com"
+                      />
                     </div>
 
                     <div>
@@ -269,6 +299,18 @@ export default function Contact() {
                       <Send className="w-5 h-5" />
                       <span>Send Message</span>
                     </button>
+
+                    <p className="text-xs text-gray-600 leading-relaxed mt-4">
+                      By submitting this form, you agree that Dunaway Heating & Cooling may contact you by phone, email, or SMS/text at the contact details provided. Message and data rates may apply. Message frequency varies. Reply STOP to opt out or HELP for help. See our{' '}
+                      <button type="button" onClick={openSmsTerms} className="text-red underline hover:text-red/80">
+                        SMS Terms
+                      </button>{' '}
+                      and{' '}
+                      <button type="button" onClick={openPrivacyPolicy} className="text-red underline hover:text-red/80">
+                        Privacy Policy
+                      </button>{' '}
+                      for more details.
+                    </p>
                   </form>
                 )}
               </div>
