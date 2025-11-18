@@ -72,12 +72,7 @@ export default function Footer() {
               Your trusted HVAC partner in Harrisville, MS since 2015. Keeping families comfortable with honest service and reliable solutions.
             </p>
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-5 bg-white rounded-sm flex items-center justify-center">
-                <div className="flex flex-col h-full w-full">
-                  <div className="h-1/2 bg-red"></div>
-                  <div className="h-1/2 bg-white"></div>
-                </div>
-              </div>
+              <span className="text-2xl">🇺🇸</span>
               <span className="text-sm text-gray-400">Proudly American</span>
             </div>
           </div>
