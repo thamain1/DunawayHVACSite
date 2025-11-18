@@ -60,7 +60,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <img src="/image.png" alt="Dunaway Heating & Cooling" className="w-12 h-12 object-contain" />
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <img src="/image.png" alt="Dunaway Heating & Cooling" className="w-10 h-10 object-contain" />
+              </div>
               <div className="flex flex-col">
                 <span className="font-bold text-white text-lg leading-tight">Dunaway</span>
                 <span className="text-sm text-gray-300 leading-tight">Heating & Cooling</span>
