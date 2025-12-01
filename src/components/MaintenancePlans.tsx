@@ -2,7 +2,7 @@ import { Check, Shield } from 'lucide-react';
 
 const plans = [
   {
-    name: 'Basic Plan',
+    name: 'Silver Plan',
     features: [
       'Annual system inspection',
       'Filter replacement',
@@ -12,7 +12,7 @@ const plans = [
     ]
   },
   {
-    name: 'Preferred Plan',
+    name: 'Gold Plan',
     features: [
       'Bi-annual system inspections',
       'Filter replacements included',
@@ -24,7 +24,7 @@ const plans = [
     highlighted: true
   },
   {
-    name: 'Premium Plan',
+    name: 'Platinum Plan',
     features: [
       'Quarterly system checkups',
       'All filters included',
