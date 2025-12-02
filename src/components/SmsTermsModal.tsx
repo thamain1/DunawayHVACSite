@@ -71,7 +71,7 @@ export default function SmsTermsModal() {
           </p>
           <ul className="list-none space-y-1 ml-4">
             <li><strong>Phone:</strong> (601) 382-1810</li>
-            <li><strong>Email:</strong> Dunawayhvac@gmail.com</li>
+            <li><strong>Email:</strong> DUNAWAYHVAC@GMAIL.COM</li>
           </ul>
 
           <h3 className="text-lg font-bold text-navy mt-6">Consent Not Required for Purchase</h3>

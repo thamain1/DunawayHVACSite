@@ -108,7 +108,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="mailto:Dunawayhvac@gmail.com"
+              href="mailto:DUNAWAYHVAC@GMAIL.COM"
               className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-t-4 border-red group"
             >
               <div className="w-14 h-14 bg-navy rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -116,7 +116,7 @@ export default function Contact() {
               </div>
               <h3 className="text-xl font-bold text-navy mb-2">Email Us</h3>
               <p className="text-gray-600 mb-3">We'll respond promptly</p>
-              <p className="text-lg font-semibold text-red break-all">Dunawayhvac@gmail.com</p>
+              <p className="text-lg font-semibold text-red break-all">DUNAWAYHVAC@GMAIL.COM</p>
             </a>
 
             <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-t-4 border-red group">

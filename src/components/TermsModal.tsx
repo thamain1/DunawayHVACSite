@@ -123,7 +123,7 @@ export default function TermsModal() {
           <ul className="list-none space-y-1 ml-4">
             <li><strong>Dunaway Heating & Cooling</strong></li>
             <li><strong>Phone:</strong> (601) 382-1810</li>
-            <li><strong>Email:</strong> Dunawayhvac@gmail.com</li>
+            <li><strong>Email:</strong> DUNAWAYHVAC@GMAIL.COM</li>
             <li><strong>Location:</strong> Harrisville, MS</li>
           </ul>
 
