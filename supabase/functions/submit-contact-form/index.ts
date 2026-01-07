@@ -147,7 +147,7 @@ Deno.serve(async (req: Request) => {
         },
         body: JSON.stringify({
           from: "Dunaway HVAC Website <onboarding@resend.dev>",
-          to: ["DUNAWAYHVAC@GMAIL.COM"],
+          to: ["dunawayhvac@gmail.com"],
           subject: `New Contact Form Submission - ${serviceTypeLabels[formData.serviceType] || formData.serviceType}`,
           html: emailHtml,
           reply_to: formData.email,
