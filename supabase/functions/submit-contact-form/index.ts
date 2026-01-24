@@ -31,7 +31,7 @@ Deno.serve(async (req: Request) => {
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    const sendgridApiKey = Deno.env.get("SENDGRID_API_KEY");
 
     const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
@@ -56,7 +56,7 @@ Deno.serve(async (req: Request) => {
       throw new Error("Failed to save submission");
     }
 
-    if (resendApiKey) {
+    if (sendgridApiKey) {
       const serviceTypeLabels: Record<string, string> = {
         heating: "Heating Service",
         cooling: "Cooling Service",
@@ -139,18 +139,33 @@ Deno.serve(async (req: Request) => {
         </html>
       `;
 
-      const emailResponse = await fetch("https://api.resend.com/emails", {
+      const emailResponse = await fetch("https://api.sendgrid.com/v3/mail/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${resendApiKey}`,
+          Authorization: `Bearer ${sendgridApiKey}`,
         },
         body: JSON.stringify({
-          from: "Dunaway HVAC Website <onboarding@resend.dev>",
-          to: ["dunawayhvac@gmail.com"],
-          subject: `New Contact Form Submission - ${serviceTypeLabels[formData.serviceType] || formData.serviceType}`,
-          html: emailHtml,
-          reply_to: formData.email,
+          personalizations: [
+            {
+              to: [{ email: "dunawayhvac@gmail.com" }],
+              subject: `New Contact Form Submission - ${serviceTypeLabels[formData.serviceType] || formData.serviceType}`,
+            },
+          ],
+          from: {
+            email: "dunawayhvac@gmail.com",
+            name: "Dunaway HVAC Website",
+          },
+          reply_to: {
+            email: formData.email,
+            name: formData.name,
+          },
+          content: [
+            {
+              type: "text/html",
+              value: emailHtml,
+            },
+          ],
         }),
       });
 
