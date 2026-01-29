@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Send, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
@@ -73,13 +74,6 @@ export default function Contact() {
     });
   };
 
-  const openSmsTerms = () => {
-    window.dispatchEvent(new CustomEvent('openSmsTerms'));
-  };
-
-  const openPrivacyPolicy = () => {
-    window.dispatchEvent(new CustomEvent('openPrivacyPolicy'));
-  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-white">
@@ -223,26 +217,6 @@ export default function Contact() {
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red focus:border-transparent transition-all duration-200"
                         placeholder="(601) 555-0123"
                       />
-                      <div className="mt-4 flex items-start space-x-3">
-                        <input
-                          type="checkbox"
-                          id="smsConsent"
-                          name="smsConsent"
-                          checked={formData.smsConsent}
-                          onChange={handleChange}
-                          className="mt-1 w-4 h-4 text-red border-gray-300 rounded focus:ring-red focus:ring-2 cursor-pointer flex-shrink-0"
-                        />
-                        <label htmlFor="smsConsent" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
-                          I agree to receive SMS/text messages from Dunaway Heating & Cooling at the number provided above, including appointment reminders, service updates, and occasional promotions. Message and data rates may apply. Message frequency varies. Consent is not a condition of purchase. Reply STOP to opt out or HELP for help. See our{' '}
-                          <button type="button" onClick={openSmsTerms} className="text-red underline hover:text-red/80">
-                            SMS Terms
-                          </button>{' '}
-                          and{' '}
-                          <button type="button" onClick={openPrivacyPolicy} className="text-red underline hover:text-red/80">
-                            Privacy Policy
-                          </button>.
-                        </label>
-                      </div>
                     </div>
 
                     <div>
@@ -332,6 +306,28 @@ export default function Contact() {
                       ></textarea>
                     </div>
 
+                    <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                      <input
+                        type="checkbox"
+                        id="smsConsent"
+                        name="smsConsent"
+                        required
+                        checked={formData.smsConsent}
+                        onChange={handleChange}
+                        className="mt-1 w-4 h-4 text-red border-gray-300 rounded focus:ring-red focus:ring-2 cursor-pointer flex-shrink-0"
+                      />
+                      <label htmlFor="smsConsent" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
+                        By checking this box, I agree to receive SMS messages from Dunaway Heating & Cooling related to appointment scheduling, service updates, and customer support. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See{' '}
+                        <Link to="/sms-terms" className="text-red underline hover:text-red/80">
+                          SMS Terms
+                        </Link>{' '}
+                        and{' '}
+                        <Link to="/privacy-policy" className="text-red underline hover:text-red/80">
+                          Privacy Policy
+                        </Link>.
+                      </label>
+                    </div>
+
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -351,15 +347,14 @@ export default function Contact() {
                     </button>
 
                     <p className="text-xs text-gray-600 leading-relaxed mt-4">
-                      By submitting this form, you agree that Dunaway Heating & Cooling may contact you by phone, email, or SMS/text at the contact details provided. Message and data rates may apply. Message frequency varies. Reply STOP to opt out or HELP for help. See our{' '}
-                      <button type="button" onClick={openSmsTerms} className="text-red underline hover:text-red/80">
+                      By submitting this form, you agree that Dunaway Heating & Cooling may contact you by phone or email at the contact details provided. For SMS terms, see{' '}
+                      <Link to="/sms-terms" className="text-red underline hover:text-red/80">
                         SMS Terms
-                      </button>{' '}
+                      </Link>{' '}
                       and{' '}
-                      <button type="button" onClick={openPrivacyPolicy} className="text-red underline hover:text-red/80">
+                      <Link to="/privacy-policy" className="text-red underline hover:text-red/80">
                         Privacy Policy
-                      </button>{' '}
-                      for more details.
+                      </Link>.
                     </p>
                   </form>
                   </>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
@@ -13,14 +14,6 @@ export default function Footer() {
         behavior: 'smooth'
       });
     }
-  };
-
-  const openSmsTerms = () => {
-    window.dispatchEvent(new CustomEvent('openSmsTerms'));
-  };
-
-  const openPrivacyPolicy = () => {
-    window.dispatchEvent(new CustomEvent('openPrivacyPolicy'));
   };
 
   const openTerms = () => {
@@ -139,19 +132,19 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col items-center space-y-4 mb-6">
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
-              <button
-                onClick={openSmsTerms}
+              <Link
+                to="/sms-terms"
                 className="text-gray-300 hover:text-red transition-colors underline"
               >
                 SMS Terms
-              </button>
+              </Link>
               <span className="text-gray-500">•</span>
-              <button
-                onClick={openPrivacyPolicy}
+              <Link
+                to="/privacy-policy"
                 className="text-gray-300 hover:text-red transition-colors underline"
               >
                 Privacy Policy
-              </button>
+              </Link>
               <span className="text-gray-500">•</span>
               <button
                 onClick={openTerms}
